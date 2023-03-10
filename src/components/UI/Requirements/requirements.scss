@@ -1,0 +1,28 @@
+.reqs {
+  &-block {
+    // margin-bottom: 10px;
+  }
+
+  &-name {
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  &-ul {
+    padding-inline-start: 40px;
+    padding-block-start: 16px;
+    padding-block-end: 16px;
+    list-style-type: disc;
+  }
+
+  &-li {
+    margin: 3px 0px;
+    font-size: 15px;
+    display: list-item;
+    list-style: inherit;
+  }
+
+  &-undefined {
+    font-size: 15px;
+  }
+}

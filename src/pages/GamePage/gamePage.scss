@@ -1,0 +1,239 @@
+.game-page {
+  height: 100vh;
+  padding-top: 100px;
+
+  &__wrapper {
+    max-width: 900px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  &__main {}
+
+  &__head {
+    display: flex;
+    align-items: center;
+
+    &-date,
+    &-platforms,
+    &-playtime,
+    &-genres {
+      text-transform: uppercase;
+      font-size: 14px;
+      margin-right: 20px;
+    }
+
+    .platforms {
+      margin-bottom: 0;
+    }
+
+    &-genres {
+      display: flex;
+
+      .genre {
+        margin-right: 5px;
+        padding: 5px;
+        border: 1px solid #fff;
+        font-size: 13px;
+      }
+    }
+  }
+
+  &__name {
+    font-size: 46px;
+    font-weight: 700;
+    margin-top: 10px;
+  }
+
+  &__ratings {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+
+    &-default {
+      display: flex;
+      align-items: center;
+      margin-right: 5px;
+
+      span {
+        margin-right: 15px;
+        font-size: 17px;
+        padding: 7px;
+      }
+
+      .greenRating {
+        border: 2px solid #00CC00;
+      }
+
+      .orangeRating {
+        border: 2px solid #FFA500;
+      }
+
+      .redRating {
+        border: 2px solid #ff3300;
+      }
+    }
+
+    &-users {
+      display: flex;
+      align-items: center;
+
+      .rating-users {
+        margin-right: 15px;
+        font-size: 17px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  &__stores {
+    margin-top: 20px;
+
+    &-head {
+      font-size: 18px;
+      color: #a5a4a4;
+    }
+  }
+
+  &__about {
+    margin-top: 20px;
+
+    &-title {
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    &-text {
+      font-size: 16px;
+      margin-top: 10px;
+      line-height: 1.3;
+
+      .expand {
+        display: inline;
+        font-size: 13px;
+        margin-top: 5px;
+        font-weight: 400;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &__meta {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .meta-big {
+      flex-basis: 100%;
+    }
+
+    &-block {
+      flex-basis: 50%;
+      margin-bottom: 20px;
+    }
+
+    &-title {
+      color: #a5a4a4;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    &-info {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    &-link, &-text, &-tag {
+      margin-right: 5px;
+      margin-bottom: 3px;
+    }
+
+    &-link {
+      color: #fff;
+      // text-decoration: underline;
+      background: linear-gradient(0deg, hsla(0, 0%, 100%, 0) 0, hsla(0, 0%, 100%, .4) 0, hsla(0, 0%, 100%, .4) 1px, hsla(0, 0%, 100%, 0) 0);
+      transition: 0.2s ease;
+
+      &:hover {
+        color: #a5a4a4;
+      }
+    }
+
+    &-text {
+      color: #fff;
+      font-size: 16px;
+    }
+
+    &-tag {
+      padding: 5px 10px;
+      background-color: hsla(0, 0%, 100%, 0.06);
+      border-radius: 5px;
+      transition: 0.2s ease;
+
+      &:hover {
+        background-color: #fff;
+        color: #000;
+      }
+    }
+  }
+
+  &__reqs {
+    &-head {
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    &-inner {
+      margin-top: 16px;
+    }
+  }
+
+  &__media {
+
+    &-title {
+      font-size: 24px;
+      font-weight: 500;
+    }
+  }
+
+  &__screenshots {
+    margin-top: 15px;
+    &-title {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+
+  &__achievements {
+    margin-top: 20px;
+  }
+}
+
+.page-art {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+
+  &__wrapper {
+    width: 100%;
+    min-height: 100%;
+  }
+
+  .art {
+    max-height: 100%;
+    background-size: cover;
+    height: 500px;
+    background-color: transparent;
+    z-index: 1;
+  }
+}

@@ -1,0 +1,25 @@
+.game-screenshot__inner {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 1200px;
+
+  .swiper-button-prev, .swiper-button-next {
+    color: #fff;
+
+    &:after {
+      font-size: 25px;
+    }
+  }
+
+  .swiper-pagination-bullet {
+    background-color: #fff;
+  }
+}
+
+.game-screenshot {
+ 
+  display: block;
+}
+
+
