@@ -28,7 +28,7 @@ const Requirements = ({platform, req, type}) => {
           return <li className="reqs-li" key={index} dangerouslySetInnerHTML={{ __html: item }}></li>;
         });
       } else { // if raw text
-        return <li className="reqs-li">{req}</li>;
+        return <li key={platform.platform.id} className="reqs-li">{req}</li>;
       }
     }
     if (type === 'Recommended' && req !== undefined) {
@@ -47,7 +47,7 @@ const Requirements = ({platform, req, type}) => {
           return <li className="reqs-li" key={index} dangerouslySetInnerHTML={{ __html: item }}></li>;
         });
       } else { // if raw text
-        return <li className="reqs-li">{req}</li>;
+        return <li key={platform.platform.id} className="reqs-li">{req}</li>;
       }
     }
 

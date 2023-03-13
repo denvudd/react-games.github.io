@@ -20,12 +20,10 @@ const GameAchievements = ({id}) => {
     setIsLoading(false);
   }
 
-  console.log(achievs);
-
   return (
     <div className="game-achievements__inner">
       {achievs.map(achieve => {
-        return <div className="game-achieve">
+        return <div key={achieve.id} className="game-achieve">
           <div className="game-achieve__photo">
             <img src={achieve.image} alt="" />
           </div>

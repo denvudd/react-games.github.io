@@ -6,14 +6,19 @@ import GamesAPI from "../../API/GamesAPI";
 import DOMPurify from "dompurify";
 
 import GameScreenshots from "../../components/GameScreenshots/GameScreenshots";
+import GameAchievements from "../../components/GameAchievements/GameAchievements";
+import GameDevs from "../../components/GameDevs/GameDevs";
+import GameRedditPosts from "../../components/GameRedditPosts/GameRedditPosts";
+
 import Platforms from "../../components/UI/Platforms/Platforms";
 import Loader from "../../components/UI/Loader/Loader";
 import Ratings from "../../components/UI/Ratings/Ratings";
 import StoresAvailable from "../../components/UI/StoresAvailable/StoresAvailable";
 import Requirements from "../../components/UI/Requirements/Requirements";
 
+import redditPostsIcon from '../../resources/img/icons/reddit-posts.png';
+
 import './gamePage.scss';
-import GameAchievements from "../../components/GameAchievements/GameAchievements";
 
 
 const GamePage = () => {
@@ -66,7 +71,7 @@ const GamePage = () => {
               </div>
               <div className="game-page__stores">
                 <h2 className="game-page__stores-head">Where to buy</h2>
-                <StoresAvailable stores={game.stores}/>
+                <StoresAvailable stores={game.stores} id={game.id}/>
               </div>
               <div className="game-page__about">
                 <h2 className="game-page__title">About</h2>
@@ -190,9 +195,22 @@ const GamePage = () => {
                   <GameScreenshots id={game.id}/>
                 </div>
               </div>
+              <div className="game-page__developers">
+                <h2 className="game-page__title">{game.name} created by</h2>
+                <GameDevs id={game.id}/>
+              </div>
               <div className="game-page__achievements">
                 <h2 className="game-page__title">The Rarest Achievements</h2>
                 <GameAchievements id={game.id}/>
+              </div>
+              <div className="game-page__reddit">
+                <div className="game-page__reddit-head">
+                  <h2 className="game-page__title">Reddit Posts</h2>
+                  <div className="game-page__reddit-count">{game.reddit_count} posts</div>
+                  <span className="game-page__reddit-separator">|</span>
+                  <a className="game-page__reddit-buttonMore" href={game.reddit_url}>View All</a>
+                </div>
+                <GameRedditPosts id={game.id}/>
               </div>
             </div>
       }
