@@ -12,7 +12,7 @@ const GameAchievements = ({id}) => {
 
   useEffect(() => {
     getAchieves();
-  }, []);
+  }, [id]);
 
   const getAchieves = async () => {
     const response = await GamesAPI.getGameAchiviementsById(id);
@@ -22,18 +22,21 @@ const GameAchievements = ({id}) => {
 
   return (
     <div className="game-achievements__inner">
-      {achievs.map(achieve => {
-        return <div key={achieve.id} className="game-achieve">
-          <div className="game-achieve__photo">
-            <img src={achieve.image} alt="" />
-          </div>
-          <div className="game-achieve__text">
-            <div className="game-achieve__name">{achieve.name}</div>
-            <div className="game-achieve__percent">{achieve.percent}%</div>
-            <div className="game-achieve__descr">{achieve.description}</div>
-          </div>
-        </div>
-      })}
+      {achievs.length !== 0
+          ? achievs.map(achieve => {
+            return <div key={achieve.id} className="game-achieve">
+              <div className="game-achieve__photo">
+                <img src={achieve.image} alt="" />
+              </div>
+              <div className="game-achieve__text">
+                <div className="game-achieve__name">{achieve.name}</div>
+                <div className="game-achieve__percent">{achieve.percent}%</div>
+                <div className="game-achieve__descr">{achieve.description}</div>
+              </div>
+            </div>
+          })
+          : <div>There is no achievements for this game</div>
+      }
     </div>
   );
 };

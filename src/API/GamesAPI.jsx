@@ -35,4 +35,9 @@ export default class GamesAPI {
     const response = await axios.get(`https://api.rawg.io/api/games/${id}/reddit?key=2e30963c61f74dac97f2c89f3b62186e`);
     return response;
   }
+
+  static async getGameAdditionsById(id) {
+    const response = await axios.get(`https://api.rawg.io/api/games/${id}/additions?key=2e30963c61f74dac97f2c89f3b62186e`);
+    return response;
+  }
 }

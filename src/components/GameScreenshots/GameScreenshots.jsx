@@ -3,15 +3,18 @@ import { useState, useEffect } from "react";
 import GamesAPI from "../../API/GamesAPI";
 
 import Loader from "../../components/UI/Loader/Loader";
+import Modal from "../UI/Modal/Modal";
+
 import { Navigation, Pagination, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ImageGallery from 'react-image-gallery';
 
-import 'react-image-gallery/styles/scss/image-gallery.scss';
 import 'swiper/scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import 'react-image-gallery/styles/scss/image-gallery.scss';
+
 import './gameScreenshots.scss';
 
 const GameScreenshots = ({id}) => {
@@ -22,7 +25,7 @@ const GameScreenshots = ({id}) => {
 
   useEffect(() => {
     getScreenshots();
-  }, []);
+  }, [id]);
 
   const getScreenshots = async () => {
     const response = await GamesAPI.getGameScreenshotsById(id);
@@ -33,10 +36,12 @@ const GameScreenshots = ({id}) => {
   const handleImageClick = (index) => {
     setShowGallery(true);
     setSelectedIndex(index);
+    document.body.style.overflow = 'hidden';
   };
 
   const handleCloseGallery = () => {
     setShowGallery(false);
+    document.body.style.overflow = 'auto';
   };
 
   const galleryImages = screenshots.map((screenshot) => ({
@@ -44,7 +49,6 @@ const GameScreenshots = ({id}) => {
     thumbnail: screenshot.image,
   }));
 
-  console.log(screenshots);
   return (
     <div className="game-screenshot__inner">
       {isLoading 
@@ -58,29 +62,28 @@ const GameScreenshots = ({id}) => {
               pagination={{ clickable: true }}
               scrollbar={{ draggable: true }}
               wrapperClass={'screenshots-slider'}
-              >
+            >
             {screenshots.map((screenshot, index) => {
-              return <SwiperSlide onClick={() => handleImageClick(index)}>
-                <img key={screenshot.id} src={screenshot.image} alt="game-screenshot" className="game-screenshot" />
+              return <SwiperSlide key={screenshot.id} onClick={() => handleImageClick(index)}>
+                <img src={screenshot.image} alt="game-screenshot" className="game-screenshot" />
               </SwiperSlide>
             })}
          </Swiper>
       }
       {showGallery && (
-        <div className="gallery-modal">
-          <div className="gallery-modal-overlay" onClick={handleCloseGallery} />
-          <div className="gallery-modal-content">
+        <Modal handleClose={handleCloseGallery}>
             <ImageGallery
               items={galleryImages}
               startIndex={selectedIndex}
               showPlayButton={false}
-              showFullscreenButton={true}
+              showFullscreenButton={false}
               showNav={true}
               loading={true}
               showBullets={true}
+              showIndex={true}
+              indexSeparator="of"
             />
-          </div>
-        </div>
+        </Modal>
       )}
     </div>
   );

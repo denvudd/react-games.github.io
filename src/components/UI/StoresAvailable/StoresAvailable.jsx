@@ -21,7 +21,7 @@ const StoresAvailable = ({stores, id}) => {
 
   useEffect(() => {
     getUrls();
-  }, []);
+  }, [id, stores]);
 
   const getUrls = async () => {
     const response = await GamesAPI.getStoreGameById(id);
@@ -48,16 +48,20 @@ const StoresAvailable = ({stores, id}) => {
           ? <Loader/>
           : stores.map(store => {
             const url = urls.find(url => url.store_id === store.store.id);
-  
-            return (
-              <a className="stores-button"
-                  href={url.url} 
-                  target="_blank" rel="noreferrer"
-                  key={store.store.id}>
-                  <div>{store.store.name}</div>
-                  <img src={storeIcons[store.store.name]} alt="store-icon" />
-                </a>
-            ) 
+            console.log(stores);
+            
+            if (url !== undefined) {
+              return (
+                <a className="stores-button"
+                    href={url.url} 
+                    target="_blank" rel="noreferrer"
+                    key={store.store.id}>
+                    <div>{store.store.name}</div>
+                    <img src={storeIcons[store.store.name]} alt="store-icon" />
+                  </a>
+              ) 
+            }
+            
           })
       }
     </div>

@@ -9,6 +9,7 @@ import GameScreenshots from "../../components/GameScreenshots/GameScreenshots";
 import GameAchievements from "../../components/GameAchievements/GameAchievements";
 import GameDevs from "../../components/GameDevs/GameDevs";
 import GameRedditPosts from "../../components/GameRedditPosts/GameRedditPosts";
+import GameAdditions from "../../components/GameAdditions/GameAdditions";
 
 import Platforms from "../../components/UI/Platforms/Platforms";
 import Loader from "../../components/UI/Loader/Loader";
@@ -16,10 +17,7 @@ import Ratings from "../../components/UI/Ratings/Ratings";
 import StoresAvailable from "../../components/UI/StoresAvailable/StoresAvailable";
 import Requirements from "../../components/UI/Requirements/Requirements";
 
-import redditPostsIcon from '../../resources/img/icons/reddit-posts.png';
-
 import './gamePage.scss';
-
 
 const GamePage = () => {
   const params = useParams();
@@ -30,8 +28,12 @@ const GamePage = () => {
   const sanitizedText = DOMPurify.sanitize(game.description); // text about
 
   useEffect(() => {
+    setIsLoading(true);
     getGamesList();
-  }, []);
+    window.scrollTo(0, 0);
+  }, [params.id]);
+
+  console.log(game);
 
   const getGamesList = async () => {
     const response = await GamesAPI.getGameById(params.id);
@@ -39,7 +41,7 @@ const GamePage = () => {
     setIsLoading(false);
   }
 
-  console.log(game);
+  
   return (
     <div className="game-page">
       <div className="container">
@@ -61,12 +63,17 @@ const GamePage = () => {
                     <Ratings type="rating" rating={game.rating}/>
                     <Ratings type="metacritic" metacritic={game.metacritic}/>
                   </div>
-                  <div className="game-page__ratings-users">
-                    <div className="rating-users">🎯 {game.ratings[0].count}</div>
-                    <div className="rating-users">👍 {game.ratings[1].count}</div>
-                    <div className="rating-users">😐 {game.ratings[2].count}</div>
-                    <div className="rating-users">⛔ {game.ratings[3].count}</div>
-                  </div>
+                  {game.ratings.length < 3 
+                    ? <div className="game-page__ratings-users">
+                        <div className="rating-users">Not rated yet 😴</div>
+                      </div>
+                    : <div className="game-page__ratings-users">
+                        <div className="rating-users">🎯 {game.ratings[0].count}</div>
+                        <div className="rating-users">👍 {game.ratings[1].count}</div>
+                        <div className="rating-users">😐 {game.ratings[2].count}</div>
+                        <div className="rating-users">⛔ {game.ratings[3].count}</div>
+                      </div>
+                  }
                 </div>
               </div>
               <div className="game-page__stores">
@@ -157,7 +164,9 @@ const GamePage = () => {
                 <div className="game-page__meta-block">
                   <div className="game-page__meta-title">Age rating</div>
                   <div className="game-page__meta-info">
-                    <div className="game-page__meta-text">{game.esrb_rating.name}</div>
+                    <div className="game-page__meta-text">{
+                      game.esrb_rating === null ? <span className="rating-none">-</span> : game.esrb_rating.name
+                    }</div>
                   </div>
                 </div>
                 <div className="game-page__meta-block meta-big">
@@ -206,11 +215,30 @@ const GamePage = () => {
               <div className="game-page__reddit">
                 <div className="game-page__reddit-head">
                   <h2 className="game-page__title">Reddit Posts</h2>
-                  <div className="game-page__reddit-count">{game.reddit_count} posts</div>
-                  <span className="game-page__reddit-separator">|</span>
-                  <a className="game-page__reddit-buttonMore" href={game.reddit_url}>View All</a>
+                  {game.reddit_count !== 0 
+                      ? <>
+                          <div className="game-page__reddit-count">{game.reddit_count} posts</div>
+                          <span className="game-page__reddit-separator">|</span>
+                          <a className="game-page__reddit-buttonMore" href={game.reddit_url}>View All</a>
+                        </>
+                      : null
+                  }
+                  
                 </div>
+                {game.reddit_count !== 0
+                    ? <div className="game-page__reddit-meta">
+                        <div className="game-page__reddit-meta__head">
+                          <span className="game-page__reddit-name"><span className="game-page__reddit-label">Subreddit name: </span>{game.reddit_name}</span>
+                        </div>
+                        <div className="game-page__reddit-description"><span className="game-page__reddit-label">Description: </span>{game.reddit_description}</div>
+                      </div>
+                    : null
+                }
                 <GameRedditPosts id={game.id}/>
+              </div>
+              <div className="game-page__additions">
+                <h2 className="game-page__title">Additions for {game.name}</h2>
+                <GameAdditions id={game.id}/>
               </div>
             </div>
       }

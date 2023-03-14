@@ -13,7 +13,10 @@ const GameItem = ({game}) => {
   return (
     <div className="game-item">
       <div className="game-item__photo">
-        <img src={game.background_image} alt="" />
+        {game.background_image === null 
+            ? <img src="http://dummyimage.com/290x180.png/99cccc&text=No+Image" alt="game" />
+            : <img src={game.background_image} alt="game" />
+        }
       </div>
       <div className="game-item__content">
         <Platforms platforms={game.platforms}/>

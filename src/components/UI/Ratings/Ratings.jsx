@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatRating } from '../../../utils/formatRating';
 
 import './ratings.scss';
 
@@ -39,12 +40,9 @@ const Ratings = ({type, rating, metacritic}) => {
   return (
     <>
       {type === 'rating' 
-        ? <span className={"label-rating " + ratingStatus}>
-            {rating}
-          </span> 
-        : <span className={"label-metacritic " + metacriticStatus}>
-            {metacritic}
-          </span>}
+        ? rating === 0 ? <span className="rating-none">none</span> : <span className={"label-rating " + ratingStatus}>{formatRating(rating)}</span>
+        : metacritic === null ? <span className="rating-none">none</span> : <span className={"label-metacritic " + metacriticStatus}>{metacritic}</span>
+      }
     </>
   );
 };

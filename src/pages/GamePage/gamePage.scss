@@ -239,6 +239,21 @@
       flex: 1 1 auto;
     }
 
+    &-meta {
+      margin-top: 10px;
+      font-size: 14px;
+
+      &__head {
+        display: flex;
+        margin-bottom: 5px;
+      }
+    }
+
+    &-label {
+      color: #a5a4a4;
+      font-weight: 500;
+    }
+
     &-count, &-buttonMore, &-separator {
       font-size: 14px;
       color: hsla(0,0%,100%,.4) !important;
@@ -248,6 +263,10 @@
       margin-right: 4px;
       margin-left: 4px;
     }
+  }
+
+  &__additions {
+    margin-top: 32px;
   }
 }
 
