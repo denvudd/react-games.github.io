@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Platforms from "../UI/Platforms/Platforms";
 import Ratings from "../UI/Ratings/Ratings";
@@ -8,7 +8,6 @@ import plus from '../../resources/img/icons/add_white_24dp.svg';
 import './gameItem.scss';
 
 const GameItem = ({game}) => {
-  const router = useNavigate();
   
   return (
     <div className="game-item">
@@ -38,7 +37,7 @@ const GameItem = ({game}) => {
             <span className="label-added">{game.added}</span>
           </div>
           <div className="game-item__details">
-            <button onClick={() => router(`/games/${game.id}`)} className="game-item__button">Details</button>
+            <Link to={`/games/${game.slug}`} className="game-item__button">Details</Link>
           </div>
         </div>
       </div>

@@ -66,13 +66,13 @@ const GameDevs = ({id}) => {
                     })}
                   </div>
               </div>
-              <div className="game-developer__content">
-                <div className="game-developer__content-title">Known for {dev.games_count} games</div>
-                <ul className="game-developer__content-items">
+              <div className="developer-item__content">
+                <div className="developer-item__content-title">Known for {dev.games_count} games</div>
+                <ul className="developer-item__content-items">
                   {dev.games.map(game => {
-                    return <li key={game.id} className="game-developer__content-game">
-                      <a href="#" className="game-developer__content-name">{game.name}</a>
-                      <span className="game-developer__content-added">{game.added}</span>
+                    return <li key={game.id} className="developer-item__content-game">
+                      <a href="#" className="developer-item__content-name">{game.name}</a>
+                      <span className="developer-item__content-added">{game.added}</span>
                     </li>
                   })}
                 </ul>

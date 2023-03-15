@@ -6,8 +6,13 @@ export default class GamesAPI {
       return response;
   }
 
-  static async getGameById(id) {
-    const response = await axios.get(`https://api.rawg.io/api/games/${id}?key=2e30963c61f74dac97f2c89f3b62186e`);
+  static async getGamesByDeveloperId(id) {
+    const response = await axios.get(`https://api.rawg.io/api/games?developers=${id}&key=2e30963c61f74dac97f2c89f3b62186e`);
+    return response;
+  }
+
+  static async getGameById(slug) {
+    const response = await axios.get(`https://api.rawg.io/api/games/${slug}?key=2e30963c61f74dac97f2c89f3b62186e`);
     return response;
   }
 
@@ -26,8 +31,8 @@ export default class GamesAPI {
     return response;
   }
 
-  static async getDevelopersGameById(id) {
-    const response = await axios.get(`https://api.rawg.io/api/games/${id}/development-team?key=2e30963c61f74dac97f2c89f3b62186e`);
+  static async getDevelopersGameById(slug) {
+    const response = await axios.get(`https://api.rawg.io/api/games/${slug}/development-team?key=2e30963c61f74dac97f2c89f3b62186e`);
     return response;
   }
 
@@ -40,4 +45,15 @@ export default class GamesAPI {
     const response = await axios.get(`https://api.rawg.io/api/games/${id}/additions?key=2e30963c61f74dac97f2c89f3b62186e`);
     return response;
   }
+
+  static async getDevelopersList() {
+    const response = await axios.get(`https://api.rawg.io/api/developers?key=2e30963c61f74dac97f2c89f3b62186e`);
+    return response;
+  }
+
+  static async getDeveloperById(slug) {
+    const response = await axios.get(`https://api.rawg.io/api/developers/${slug}?key=2e30963c61f74dac97f2c89f3b62186e`);
+    return response;
+  }
+
 }

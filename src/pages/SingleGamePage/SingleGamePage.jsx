@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import GamesAPI from "../../API/GamesAPI";
 import DOMPurify from "dompurify";
@@ -17,13 +18,14 @@ import Ratings from "../../components/UI/Ratings/Ratings";
 import StoresAvailable from "../../components/UI/StoresAvailable/StoresAvailable";
 import Requirements from "../../components/UI/Requirements/Requirements";
 
-import './gamePage.scss';
+import './singleGamePage.scss';
 
 const GamePage = () => {
   const params = useParams();
   const [game, setGame] = useState({});
   const [expanded, setExpanded] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useNavigate();
   
   const sanitizedText = DOMPurify.sanitize(game.description); // text about
 
@@ -31,19 +33,18 @@ const GamePage = () => {
     setIsLoading(true);
     getGamesList();
     window.scrollTo(0, 0);
-  }, [params.id]);
+  }, [params.slug]);
 
   console.log(game);
 
   const getGamesList = async () => {
-    const response = await GamesAPI.getGameById(params.id);
+    const response = await GamesAPI.getGameById(params.slug);
     setGame(response.data);
     setIsLoading(false);
   }
 
-  
   return (
-    <div className="game-page">
+    <div className="page game-page">
       <div className="container">
       {isLoading 
           ? <Loader/>
@@ -81,7 +82,7 @@ const GamePage = () => {
                 <StoresAvailable stores={game.stores} id={game.id}/>
               </div>
               <div className="game-page__about">
-                <h2 className="game-page__title">About</h2>
+                <h2 className="page__title">About</h2>
                 <div className="game-page__about-text">
                   {expanded 
                       ? <>
@@ -142,9 +143,13 @@ const GamePage = () => {
                   <div className="game-page__meta-info">
                     {game.developers.map((dev, index, array) => {
                       if ((index + 1) !== array.length) {
-                        return <div key={dev.id} className="game-page__meta-link"><a href="#">{dev.name},</a></div> 
+                        return <div key={dev.id} className="game-page__meta-link">
+                          <button onClick={() => router(`/developers/${dev.slug}`)} href="#">{dev.name},</button>
+                        </div> 
                       } else {
-                        return <div key={dev.id} className="game-page__meta-link"><a href="#">{dev.name}</a></div> 
+                        return <div key={dev.id} className="game-page__meta-link">
+                        <button onClick={() => router(`/developers/${dev.slug}`)} href="#">{dev.name}</button>
+                      </div>
                       }
                     })}
                   </div>
@@ -185,7 +190,7 @@ const GamePage = () => {
                 </div>
               </div>
               <div className="game-page__reqs">
-                <h2 className="game-page__title">System requirements for PC</h2>
+                <h2 className="page__title">System requirements for PC</h2>
                 <div className="game-page__reqs-inner">
                   {game.platforms.map(platform => {
                     if (platform.platform.name === 'PC') {
@@ -198,23 +203,23 @@ const GamePage = () => {
                 </div>
               </div>
               <div className="game-page__media">
-                <h2 className="game-page__title">Media</h2>
+                <h2 className="page__title">Media</h2>
                 <div className="game-page__screenshots">
                   <h2 className="game-page__screenshots-title">Screenshots</h2>
                   <GameScreenshots id={game.id}/>
                 </div>
               </div>
               <div className="game-page__developers">
-                <h2 className="game-page__title">{game.name} created by</h2>
+                <h2 className="page__title">{game.name} created by</h2>
                 <GameDevs id={game.id}/>
               </div>
               <div className="game-page__achievements">
-                <h2 className="game-page__title">The Rarest Achievements</h2>
+                <h2 className="page__title">The Rarest Achievements</h2>
                 <GameAchievements id={game.id}/>
               </div>
               <div className="game-page__reddit">
                 <div className="game-page__reddit-head">
-                  <h2 className="game-page__title">Reddit Posts</h2>
+                  <h2 className="page__title">Reddit Posts</h2>
                   {game.reddit_count !== 0 
                       ? <>
                           <div className="game-page__reddit-count">{game.reddit_count} posts</div>
@@ -237,7 +242,8 @@ const GamePage = () => {
                 <GameRedditPosts id={game.id}/>
               </div>
               <div className="game-page__additions">
-                <h2 className="game-page__title">Additions for {game.name}</h2>
+              <div class="page-art__additional" style={{backgroundImage: `radial-gradient(closest-side at center center, transparent, rgb(21, 21, 21)), url(${game.background_image_additional})`}}></div>
+                <h2 className="page__title">Additions for {game.name}</h2>
                 <GameAdditions id={game.id}/>
               </div>
             </div>
