@@ -2,22 +2,22 @@ import { useState, useEffect, useRef } from 'react';
 import { useFetching } from '../../hooks/useFetching';
 import { useObserver } from '../../hooks/useObserver';
 
-import DevelopersService from '../../API/services/developers/DevelopersService';
+import PublishersService from '../../API/services/publishers/PublishersService';
 
-import DevelopersList from '../../components/DevelopersList/DevelopersList';
+import PublishersList from '../../components/PublishersList/PublishersList';
 import Loader from '../../components/UI/Loader/Loader';
 
 import { getTotalPageCount } from '../../utils/getTotalPageCount';
-import './developersPage.scss';
+import './publishersPage.scss';
 
-const DevelopersPage = () => {
-  const [developersList, setDevelopersList] = useState([]);
+const PublishersPage = () => {
+  const [publishersList, setPublishersList] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
-  const [getDevelopers, isLoading, error] = useFetching(async () => {
-    const response = await DevelopersService.getDevelopersList(limit, page);
-    setDevelopersList([...developersList, ...response.data.results]);
+  const [getPublishers, isLoading, error] = useFetching(async () => {
+    const response = await PublishersService.getPublishersList(limit, page);
+    setPublishersList([...publishersList, ...response.data.results]);
 
     const totalCount = response.data.count;
     setTotalPages(getTotalPageCount(totalCount, limit))
@@ -31,19 +31,19 @@ const DevelopersPage = () => {
   });
 
   useEffect(() => {
-    getDevelopers();
+    getPublishers();
   }, [page, limit]);
-
-  console.log([...developersList])
+  
+  console.log([...publishersList])
 
   return (
-    <div className="page developers-page">
+    <div className="page publishers-page">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">Developers</h2>
+          <h2 className="section-title">Publishers</h2>
         </div>
         <div className="developers-page__wrapper">
-          <DevelopersList developersList={developersList}/>
+          <PublishersList publishersList={publishersList}/>
         </div>
         <div ref={lastElement} className="observer"></div>
         {isLoading && <Loader/>}
@@ -52,4 +52,4 @@ const DevelopersPage = () => {
   );
 };
 
-export default DevelopersPage;
+export default PublishersPage;

@@ -19,7 +19,7 @@ const GameItem = ({game}) => {
       </div>
       <div className="game-item__content">
         <Platforms platforms={game.platforms}/>
-        <div className="game-item__name">{game.name}</div>
+        <Link to={`/games/${game.slug}`} className="game-item__name">{game.name}</Link>
         <div className="game-item__released"><span className="label">Released: </span>{game.released}</div>
         <div className="game-item__rating">
           <span className="label">Rating: </span>

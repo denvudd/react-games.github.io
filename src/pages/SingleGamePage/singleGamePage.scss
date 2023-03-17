@@ -108,6 +108,17 @@
           text-decoration: underline;
         }
       }
+
+      p {
+        padding-block-end: 0.2em;
+        padding-block-start: 0.2em;
+      }
+
+      h2, h3, h4, h5, h6 {
+        font-weight: 500;
+        font-size: 17px;
+        margin: 5px 0px;
+      }
     }
   }
 

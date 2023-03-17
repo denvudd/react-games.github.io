@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { useFetching } from "../../hooks/useFetching";
 
-import GamesAPI from "../../API/GamesAPI";
+import DevelopersService from "../../API/services/developers/DevelopersService";
 
 import Loader from "../../components/UI/Loader/Loader";
 import { Navigation, Pagination, Scrollbar } from 'swiper';
@@ -14,17 +15,16 @@ import './gameDevs.scss';
 
 const GameDevs = ({id}) => {
   const [devs, setDevs] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [getDevs, isLoading, error] = useFetching(async () => {
+    const response = await DevelopersService.getDevelopersGameById(id);
+    setDevs(response.data.results);
+  });
 
   useEffect(() => {
     getDevs();
   }, [id]);
 
-  const getDevs = async () => {
-    const response = await GamesAPI.getDevelopersGameById(id);
-    setDevs(response.data.results);
-    setIsLoading(false);
-  }
+
 
   const swiperParams = {
     modules: [Navigation, Pagination],
@@ -66,13 +66,13 @@ const GameDevs = ({id}) => {
                     })}
                   </div>
               </div>
-              <div className="developer-item__content">
-                <div className="developer-item__content-title">Known for {dev.games_count} games</div>
-                <ul className="developer-item__content-items">
+              <div className="card-item__content">
+                <div className="card-item__content-title">Known for {dev.games_count} games</div>
+                <ul className="card-item__content-items">
                   {dev.games.map(game => {
-                    return <li key={game.id} className="developer-item__content-game">
-                      <a href="#" className="developer-item__content-name">{game.name}</a>
-                      <span className="developer-item__content-added">{game.added}</span>
+                    return <li key={game.id} className="card-item__content-game">
+                      <a href="#" className="card-item__content-name">{game.name}</a>
+                      <span className="card-item__content-added">{game.added}</span>
                     </li>
                   })}
                 </ul>

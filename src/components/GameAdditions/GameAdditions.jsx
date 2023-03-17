@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFetching } from "../../hooks/useFetching";
 
-import GamesAPI from "../../API/GamesAPI";
+import GamesService from "../../API/services/games/GamesService";
 
 import Loader from "../../components/UI/Loader/Loader";
 import GameItem from "../GameItem/GameItem";
@@ -10,19 +11,14 @@ import './gameAdditions.scss';
 
 const GameAdditions = ({id}) => {
   const [additions, setAdditions] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [getAdditions, isLoading, error] = useFetching(async () => {
+    const response = await GamesService.getGameAdditionsById(id);
+    setAdditions(response.data.results);
+  });
 
   useEffect(() => {
     getAdditions();
   }, [id]);
-
-  const getAdditions = async () => {
-    const response = await GamesAPI.getGameAdditionsById(id);
-    setAdditions(response.data.results);
-    setIsLoading(false);
-  }
-
-  const router = useNavigate();
 
   const showLoader = isLoading;
   const showNoAdditionsMessage = !isLoading && additions.length === 0;

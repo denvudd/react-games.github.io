@@ -98,6 +98,7 @@ legend {
   max-width: 1440px;
   width: 100%;
   margin: 0 auto;
+  padding: 0 5px;
 }
 
 .section-header {
@@ -150,7 +151,96 @@ legend {
 }
 
 .page {
-  height: 100vh;
+  min-height: 100%;
   padding-top: 50px;
+  padding-bottom: 50px;
   position: relative;
+}
+
+.card-item {
+  background-color: rgb(32, 32, 32);
+  max-width: 380px;
+  width: 100%;
+  height: 380px;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 6px;
+  box-shadow: 0 10px 20px 0 rgba(0,0,0,.2);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 auto;
+
+  &__head {
+    flex: 1 1 auto;
+    text-align: center;
+    
+    &-name {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    &-buttonMore {
+      margin-top: 16px;
+
+      a {
+        font-weight: 400;
+        font-size: 16px;
+        padding: 10px 35px;
+        border-radius: 4px;
+        color: #fff;
+        background-color: hsla(0,0%,100%,.1);
+        transition: 0.2s ease;
+        background-image: none;
+        display: inline-block; 
+
+        &:hover {
+          color: #000;
+          background-color: #fff;
+          opacity: 1
+        }
+      }
+    }
+  }
+  &__content {
+    flex: 0 1 auto;
+    &-title {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    &-items {
+      width: 100%;
+      border-top: 1px solid hsla(0,0%,100%,.1);
+      margin-top: 8px;
+      padding-top: 8px;
+    }
+
+    &-game {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: 6px;
+      width: 100%;
+    }
+
+    &-name {
+      max-width: 75%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      background-image: linear-gradient(0deg,hsla(0,0%,100%,0) 0,hsla(0,0%,100%,.4) 0,hsla(0,0%,100%,.4) 1px,hsla(0,0%,100%,0) 0);
+    }
+
+    &-added {
+      background: url('./resources/img/icons/added-dev.svg') no-repeat 100% / 9px 16px;
+      padding-right: 12px;
+      opacity: .4;
+    }
+  }
+}
+
+.observer {
+  height: 10px;
 }

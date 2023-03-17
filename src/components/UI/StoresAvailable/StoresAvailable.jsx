@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { useFetching } from "../../../hooks/useFetching";
 
-import GamesAPI from "../../../API/GamesAPI";
+import GamesService from "../../../API/services/games/GamesService";
 
 import Loader from "../../../components/UI/Loader/Loader";
 
@@ -17,17 +18,14 @@ import './storesAvailable.scss';
 
 const StoresAvailable = ({stores, id}) => {
   const [urls, setUrls] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [getUrls, isLoading, error] = useFetching(async () => {
+    const response = await GamesService.getStoreGameById(id);
+    setUrls(response.data.results);
+  });
 
   useEffect(() => {
     getUrls();
   }, [id, stores]);
-
-  const getUrls = async () => {
-    const response = await GamesAPI.getStoreGameById(id);
-    setUrls(response.data.results);
-    setIsLoading(false);
-  }
 
   const usedIcons = {};
   const storeIcons = {
@@ -48,7 +46,6 @@ const StoresAvailable = ({stores, id}) => {
           ? <Loader/>
           : stores.map(store => {
             const url = urls.find(url => url.store_id === store.store.id);
-            console.log(stores);
             
             if (url !== undefined) {
               return (

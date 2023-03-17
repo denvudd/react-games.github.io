@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { useFetching } from "../../hooks/useFetching";
 
-import GamesAPI from "../../API/GamesAPI";
+import GamesService from "../../API/services/games/GamesService";
 
 import Loader from "../../components/UI/Loader/Loader";
 import Modal from "../UI/Modal/Modal";
@@ -21,17 +22,14 @@ const GameScreenshots = ({id}) => {
   const [screenshots, setScreenshots] = useState([]);
   const [showGallery, setShowGallery] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [getScreenshots, isLoading, error] = useFetching(async () => {
+    const response = await GamesService.getGameScreenshotsById(id);
+    setScreenshots(response.data.results);
+  });
 
   useEffect(() => {
     getScreenshots();
   }, [id]);
-
-  const getScreenshots = async () => {
-    const response = await GamesAPI.getGameScreenshotsById(id);
-    setScreenshots(response.data.results);
-    setIsLoading(false);
-  }
 
   const handleImageClick = (index) => {
     setShowGallery(true);

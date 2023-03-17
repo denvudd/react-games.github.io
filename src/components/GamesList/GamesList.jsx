@@ -2,7 +2,7 @@ import GameItem from "../GameItem/GameItem";
 
 import './gamesList.scss';
 
-const GamesList = ({gamesList}) => {
+const GamesList = ({gamesList, page, totalPages, limit}) => {
   return (
     <div className="games-list">
       <ul className="games-list__ul">

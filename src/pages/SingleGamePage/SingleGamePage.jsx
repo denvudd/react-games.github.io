@@ -1,9 +1,9 @@
 
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { useFetching } from "../../hooks/useFetching";
 
-import GamesAPI from "../../API/GamesAPI";
+import GamesService from "../../API/services/games/GamesService";
 import DOMPurify from "dompurify";
 
 import GameScreenshots from "../../components/GameScreenshots/GameScreenshots";
@@ -24,24 +24,20 @@ const GamePage = () => {
   const params = useParams();
   const [game, setGame] = useState({});
   const [expanded, setExpanded] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const router = useNavigate();
+  const [getGamesList, isLoading, error] = useFetching(async () => {
+    const response = await GamesService.getGameBySlug(params.slug);
+    setGame(response.data);
+  });
   
   const sanitizedText = DOMPurify.sanitize(game.description); // text about
 
   useEffect(() => {
-    setIsLoading(true);
     getGamesList();
     window.scrollTo(0, 0);
   }, [params.slug]);
 
   console.log(game);
 
-  const getGamesList = async () => {
-    const response = await GamesAPI.getGameById(params.slug);
-    setGame(response.data);
-    setIsLoading(false);
-  }
 
   return (
     <div className="page game-page">
@@ -143,13 +139,9 @@ const GamePage = () => {
                   <div className="game-page__meta-info">
                     {game.developers.map((dev, index, array) => {
                       if ((index + 1) !== array.length) {
-                        return <div key={dev.id} className="game-page__meta-link">
-                          <button onClick={() => router(`/developers/${dev.slug}`)} href="#">{dev.name},</button>
-                        </div> 
+                        return <div key={dev.id} className="game-page__meta-link"><Link to={`/developers/${dev.slug}`}>{dev.name},</Link></div> 
                       } else {
-                        return <div key={dev.id} className="game-page__meta-link">
-                        <button onClick={() => router(`/developers/${dev.slug}`)} href="#">{dev.name}</button>
-                      </div>
+                        return <div key={dev.id} className="game-page__meta-link"><Link to={`/developers/${dev.slug}`}>{dev.name}</Link></div> 
                       }
                     })}
                   </div>
@@ -159,9 +151,9 @@ const GamePage = () => {
                   <div className="game-page__meta-info">
                     {game.publishers.map((publ, index, array) => {
                       if ((index + 1) !== array.length) {
-                        return <div key={publ.id} className="game-page__meta-link"><a href="#">{publ.name},</a></div> 
+                        return <div key={publ.id} className="game-page__meta-link"><Link to={`/publishers/${publ.slug}`}>{publ.name},</Link></div> 
                       } else {
-                        return <div key={publ.id} className="game-page__meta-link"><a href="#">{publ.name}</a></div> 
+                        return <div key={publ.id} className="game-page__meta-link"><Link to={`/publishers/${publ.slug}`}>{publ.name}</Link></div> 
                       }
                     })}
                   </div>

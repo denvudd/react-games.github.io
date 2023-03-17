@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { useFetching } from "../../hooks/useFetching";
 
-import GamesAPI from "../../API/GamesAPI";
+import GamesService from "../../API/services/games/GamesService";
 
 import Loader from "../../components/UI/Loader/Loader";
 
@@ -10,17 +11,14 @@ import './gameRedditPosts.scss';
 
 const GameRedditPosts = ({id}) => {
   const [posts, setPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [getPosts, isLoading, error] = useFetching(async () => {
+    const response = await GamesService.getRedditPostsById(id);
+    setPosts(response.data.results);
+  });
 
   useEffect(() => {
     getPosts();
   }, [id]);
-
-  const getPosts = async () => {
-    const response = await GamesAPI.getRedditPostsById(id);
-    setPosts(response.data.results);
-    setIsLoading(false);
-  }
 
   const postsContent = posts.length !== 0
     ? posts.map(post => {
