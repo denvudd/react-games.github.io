@@ -8,6 +8,8 @@ const useSortGames = (sort, gamesList) => {
           return [...gamesList].sort((a, b) => a[sort].localeCompare(b[sort]));
         case 'rating':
           return [...gamesList].sort((a, b) => b[sort] - a[sort]);
+        case 'metacritic':
+          return [...gamesList].sort((a, b) => b[sort] - a[sort]);
         case 'added':
           return [...gamesList].sort((a, b) => a[sort] - b[sort]);
         case 'released':

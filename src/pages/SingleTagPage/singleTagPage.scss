@@ -1,0 +1,36 @@
+.tag-page {
+  &__name {
+    font-size: 46px;
+    font-weight: 700;
+  }
+
+  &__count {
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-top: 3px;
+  }
+
+  &__about {
+    margin-top: 10px;
+
+    &-text {
+      font-size: 16px;
+      margin-top: 10px;
+      line-height: 1.3;
+
+      p {
+        padding-block-start: 0.5em;
+        padding-block-end: 0.5em;
+      }
+
+      h2, h3, h4, h5 {
+        font-weight: 500;
+        font-size: 18px;
+      }
+    }
+  }
+
+  &__games {
+    margin-top: 20px;
+  }
+}

@@ -1,14 +1,32 @@
 .games-list {
   margin-top: 10px;
+
   &__ul {
     display: flex;
     flex-wrap: wrap;
   }
 
+  .column {
+    flex-direction: row;
+  }
+
+  .list {
+    flex-direction: column;
+    align-items: center;
+  }
+
   &__li {
+    width: 100%;
+  }
+
+  .default {
     margin: 10px 10px;
     max-width: 320px;
-    width: 100%;
+  }
+  
+  .big {
+    margin: 24px 0px 0px 0px;
+    max-width: 714px;
   }
 }
   

@@ -12,8 +12,14 @@ export default class PublishersService {
     return response;
   }
 
-  static async getGamesByPublisherSlug(slug) {
-    const response = await axios.get(`https://api.rawg.io/api/games?publishers=${slug}&key=${_APIKEY}`);
+  static async getGamesByPublisherSlug(slug, limit, page, platform) {
+    const response = await axios.get(`https://api.rawg.io/api/games?publishers=${slug}&key=${_APIKEY}`,{
+      params: {
+        page_size: limit,
+        platforms: platform,
+        page: page,
+      }
+    });
     return response;
   }
 

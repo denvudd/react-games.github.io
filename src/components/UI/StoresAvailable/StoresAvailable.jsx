@@ -3,7 +3,7 @@ import { useFetching } from "../../../hooks/useFetching";
 
 import GamesService from "../../../API/services/games/GamesService";
 
-import Loader from "../../../components/UI/Loader/Loader";
+import Loader from "../Loader/Loader";
 
 import psStore from '../../../resources/img/icons/psStore.svg';
 import steamStore from '../../../resources/img/icons/steamStore.svg';
@@ -13,6 +13,7 @@ import epicGamesStore from '../../../resources/img/icons/epicgamesStore.svg';
 import googlePlayStore from '../../../resources/img/icons/googlePlayStore.svg';
 import appleStore from '../../../resources/img/icons/appleStore.svg';
 import gogStore from '../../../resources/img/icons/gogStore.svg';
+import itchIoStore from '../../../resources/img/icons/itchIoStore.svg';
 
 import './storesAvailable.scss';
 
@@ -38,6 +39,7 @@ const StoresAvailable = ({stores, id}) => {
     'Google Play': googlePlayStore,
     'App Store': appleStore,
     'GOG': gogStore,
+    'itch.io' : itchIoStore,
   };
   
   return (

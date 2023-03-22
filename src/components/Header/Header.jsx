@@ -1,10 +1,12 @@
-import { useState } from 'react';
-
+import { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
+
+import SearchBar from '../SearchBar/SearchBar';
 
 import './header.scss';
 
-const Header = () => {
+
+const Header = ({navigate}) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleDropdownMouseEnter = () => {
@@ -14,14 +16,17 @@ const Header = () => {
   const handleDropdownMouseLeave = () => {
     setIsDropdownOpen(false);
   };
-  console.log(isDropdownOpen);
+
   return (
     <header className="header">
       <div className="header__wrapper">
         <div className="header__item">
-          <NavLink to="/" className="header__item-link">
-            <div className="header__logo">GAME</div>
+          <NavLink to="/" className="header__logo">
+            GAME
           </NavLink>
+        </div>
+        <div className="header__item header__item__search">
+          <SearchBar navigate={navigate}/>
         </div>
         <div className="header__item">
           <nav className="header__nav">
@@ -44,12 +49,14 @@ const Header = () => {
 
               {isDropdownOpen && (
                 <ul className="dropdown">
-                  <li className="dropdown__li"><a href="#" className="dropdown__link">Games by rating</a></li>
-                  <li className="dropdown__li"><a href="#" className="dropdown__link">Games by genre</a></li>
-                  <li className="dropdown__li"><a href="#" className="dropdown__link">Games by platform</a></li>               
+                  <li className="dropdown__li">
+                    <NavLink to="/games-by-rating">Games by rating</NavLink>
+                  </li>
+                  <li className="dropdown__li">
+                    <NavLink to="/games-by-metacritic">Games by metacritic</NavLink>
+                  </li>
                 </ul>
-              )}
-                
+              )}  
               </li>
               <li className="header__li">
                 <NavLink to="/developers" 
@@ -64,6 +71,27 @@ const Header = () => {
                          isActive ? "header__link--active" : "header__link" 
                          }
                          >Publishers</NavLink>
+              </li>
+              <li className="header__li">
+                <NavLink to="/genres" 
+                         className={({ isActive }) =>
+                         isActive ? "header__link--active" : "header__link" 
+                         }
+                         >Genres</NavLink>
+              </li>
+              <li className="header__li">
+                <NavLink to="/platforms" 
+                         className={({ isActive }) =>
+                         isActive ? "header__link--active" : "header__link" 
+                         }
+                         >Platforms</NavLink>
+              </li>
+              <li className="header__li">
+                <NavLink to="/tags" 
+                         className={({ isActive }) =>
+                         isActive ? "header__link--active" : "header__link" 
+                         }
+                         >Tags</NavLink>
               </li>
             </ul>
           </nav>

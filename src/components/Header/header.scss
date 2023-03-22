@@ -13,6 +13,28 @@
     margin: 0 auto;
   }
 
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 44px;
+    margin: 0 16px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &__search {
+      min-width: 200px;
+      width: 100%;
+      flex-grow: 2;
+    }
+  }
+
   &__link {
     font-size: 14px;
     font-weight: 500;
@@ -38,6 +60,7 @@
     line-height: 1;
     letter-spacing: 5px;
     color: #fff;
+    background-image: none;
   }
 
   &__ul {
@@ -64,7 +87,7 @@
     flex-direction: column;
     z-index: 1000;
 
-    &__link {
+    &__link, a {
       font-size: 13px;
       font-weight: 500;
       text-transform: uppercase;

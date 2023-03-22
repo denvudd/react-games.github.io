@@ -12,8 +12,14 @@ export default class DevelopersService {
     return response;
   }
 
-  static async getGamesByDeveloperId(id) {
-    const response = await axios.get(`https://api.rawg.io/api/games?developers=${id}&key=${_APIKEY}`);
+  static async getGamesByDeveloperSlug(slug, limit, page, platform) {
+    const response = await axios.get(`https://api.rawg.io/api/games?developers=${slug}&key=${_APIKEY}`,{
+      params: {
+        page_size: limit,
+        platforms: platform,
+        page: page,
+      }
+    });
     return response;
   }
 

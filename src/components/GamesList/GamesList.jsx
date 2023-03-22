@@ -1,14 +1,16 @@
+
+import { memo } from "react";
 import GameItem from "../GameItem/GameItem";
 
 import './gamesList.scss';
 
-const GamesList = ({gamesList, page, totalPages, limit}) => {
+const GamesList = ({gamesList, displayMode}) => {
   return (
     <div className="games-list">
-      <ul className="games-list__ul">
+      <ul className={displayMode === 'column' ? 'games-list__ul column' : 'games-list__ul list'}>
         {gamesList.map(game => {
           return (
-            <li key={game.id} className="games-list__li">
+            <li key={game.id} className={displayMode === 'column' ? 'games-list__li default' : 'games-list__li big'}>
               <GameItem game={game}/>
             </li>
           )
@@ -18,4 +20,4 @@ const GamesList = ({gamesList, page, totalPages, limit}) => {
   );
 };
 
-export default GamesList;
+export default memo(GamesList);

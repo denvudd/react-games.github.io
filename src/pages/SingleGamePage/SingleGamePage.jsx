@@ -21,13 +21,13 @@ import Requirements from "../../components/UI/Requirements/Requirements";
 import './singleGamePage.scss';
 
 const GamePage = () => {
-  const params = useParams();
   const [game, setGame] = useState({});
   const [expanded, setExpanded] = useState(false);
   const [getGamesList, isLoading, error] = useFetching(async () => {
     const response = await GamesService.getGameBySlug(params.slug);
     setGame(response.data);
   });
+  const params = useParams();
   
   const sanitizedText = DOMPurify.sanitize(game.description); // text about
 
@@ -35,9 +35,6 @@ const GamePage = () => {
     getGamesList();
     window.scrollTo(0, 0);
   }, [params.slug]);
-
-  console.log(game);
-
 
   return (
     <div className="page game-page">
@@ -47,18 +44,21 @@ const GamePage = () => {
           : <div className="game-page__wrapper">
               <div className="game-page__main">
                 <div className="game-page__head">
-                  <div className="game-page__head-date">{game.released}</div>
+                  {game.released === null
+                      ? null
+                      : <div className="game-page__head-date">{game.released}</div>
+                  }
                   <div className="game-page__head-platforms"><Platforms platforms={game.platforms}/></div>
                   <div className="game-page__head-genres">{game.genres.map(genre => {
-                    return <div key={genre.id} className="genre">{genre.name}</div>
+                    return <Link to={`/genres/${genre.slug}`} key={genre.id} className="genre">{genre.name}</Link> 
                   })}</div>
                   <div className="game-page__head-playtime">Average playtime: {game.playtime} hours</div>
                 </div>
                 <h1 className="game-page__name">{game.name}</h1>
                 <div className="game-page__ratings">
                   <div className="game-page__ratings-default">
-                    <Ratings type="rating" rating={game.rating}/>
-                    <Ratings type="metacritic" metacritic={game.metacritic}/>
+                    {game.rating === 0 ? null : <Ratings type="rating" rating={game.rating}/>}
+                    {game.metacritic === null ? null : <Ratings type="metacritic" metacritic={game.metacritic}/>}
                   </div>
                   {game.ratings.length < 3 
                     ? <div className="game-page__ratings-users">
@@ -73,10 +73,13 @@ const GamePage = () => {
                   }
                 </div>
               </div>
-              <div className="game-page__stores">
-                <h2 className="game-page__stores-head">Where to buy</h2>
-                <StoresAvailable stores={game.stores} id={game.id}/>
-              </div>
+              {game.stores.length === 0
+                  ? null
+                  : <div className="game-page__stores">
+                      <h2 className="game-page__stores-head">Where to buy</h2>
+                      <StoresAvailable stores={game.stores} id={game.id}/>
+                    </div>
+              }
               <div className="game-page__about">
                 <h2 className="page__title">About</h2>
                 <div className="game-page__about-text">
@@ -105,11 +108,11 @@ const GamePage = () => {
                   <div className="game-page__meta-title">Platforms</div>
                   <div className="game-page__meta-info">
                     {game.platforms.map((platform, index, array) => {
-                    if ((index + 1) !== array.length) {
-                      return <div key={platform.id} className="game-page__meta-link"><a href="#">{platform.platform.name},</a></div> 
-                    } else {
-                      return <div key={platform.id} className="game-page__meta-link"><a href="#">{platform.platform.name}</a></div> 
-                    }
+                      if ((index + 1) !== array.length) {
+                        return <div key={platform.id} className="game-page__meta-link"><Link to={`/platforms/${platform.platform.id}`}>{platform.platform.name},</Link></div> 
+                      } else {
+                        return <div key={platform.id} className="game-page__meta-link"><Link to={`/platforms/${platform.platform.id}`}>{platform.platform.name}</Link></div> 
+                      }
                     })}
                   </div>
                 </div>
@@ -118,9 +121,9 @@ const GamePage = () => {
                   <div className="game-page__meta-info">
                     {game.genres.map((genre, index, array) => {
                       if ((index + 1) !== array.length) {
-                        return <div key={genre.id} className="game-page__meta-link"><a href="#">{genre.name},</a></div> 
+                        return <div key={genre.id} className="game-page__meta-link"><Link to={`/genres/${genre.slug}`}>{genre.name},</Link></div> 
                       } else {
-                        return <div key={genre.id} className="game-page__meta-link"><a href="#">{genre.name}</a></div> 
+                        return <div key={genre.id} className="game-page__meta-link"><Link to={`/genres/${genre.slug}`}>{genre.name}</Link></div> 
                       }
                     })}
                   </div>
@@ -169,7 +172,10 @@ const GamePage = () => {
                 <div className="game-page__meta-block meta-big">
                   <div className="game-page__meta-title">Website</div>
                   <div className="game-page__meta-info">
-                    <div className="game-page__meta-link"><a href={game.website}>{game.website}</a></div> 
+                    {game.website !== ""
+                        ? <div className="game-page__meta-link"><a href={game.website}>{game.website}</a></div> 
+                        : <span className="rating-none">-</span>
+                    }
                   </div>
                 </div>
                 <div className="game-page__meta-block meta-big">
@@ -187,9 +193,11 @@ const GamePage = () => {
                   {game.platforms.map(platform => {
                     if (platform.platform.name === 'PC') {
                       return <>
-                        <Requirements platform={platform} type={'Minimal'} req={platform.requirements.minimum}/>
-                        <Requirements platform={platform} type={'Recommended'} req={platform.requirements.recommended}/>
+                        <Requirements key={platform.id} platform={platform} type={'Minimal'} req={platform.requirements.minimum}/>
+                        <Requirements key={platform.id} platform={platform} type={'Recommended'} req={platform.requirements.recommended}/>
                       </>
+                    } else {
+                      return null;
                     }
                   })}
                 </div>
@@ -234,7 +242,7 @@ const GamePage = () => {
                 <GameRedditPosts id={game.id}/>
               </div>
               <div className="game-page__additions">
-              <div class="page-art__additional" style={{backgroundImage: `radial-gradient(closest-side at center center, transparent, rgb(21, 21, 21)), url(${game.background_image_additional})`}}></div>
+              <div className="page-art__additional" style={{backgroundImage: `radial-gradient(closest-side at center center, transparent, rgb(21, 21, 21)), url(${game.background_image_additional})`}}></div>
                 <h2 className="page__title">Additions for {game.name}</h2>
                 <GameAdditions id={game.id}/>
               </div>

@@ -3,7 +3,7 @@ import { useFetching } from "../../hooks/useFetching";
 
 import GamesService from "../../API/services/games/GamesService";
 
-import Loader from "../../components/UI/Loader/Loader";
+import Loader from "../UI/Loader/Loader";
 import Modal from "../UI/Modal/Modal";
 
 import { Navigation, Pagination, Scrollbar } from 'swiper';

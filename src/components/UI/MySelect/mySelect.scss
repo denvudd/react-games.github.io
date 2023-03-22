@@ -1,0 +1,78 @@
+.my-select {
+  &__wrapper {
+    display: flex;
+  }
+  &__control {
+    width: auto;
+    min-width: 150px;
+    padding: 3px 16px;
+    background-color: hsla(0,0%,100%,.07) !important;
+    border-radius: 8px !important;
+    font-size: 14px !important; 
+    min-height: auto;
+    border: none !important;
+    color: #fff !important;
+    outline: none;
+    cursor: pointer !important;
+
+    &--menu-is-open {
+      background-color: #fff !important;
+      color: #000 !important;
+      border-radius: 4px 4px 0px 0px !important;
+    }
+
+    &--is-focused {
+      box-shadow: none !important;
+    }
+  }
+
+  &__single-value {
+    color: inherit !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  &__value-container {
+    padding: 0px 5px 0px 0px !important;
+  }
+
+  &__indicator-separator {
+    display: none;
+  }
+
+  &__dropdown-indicator {
+    opacity: .4;
+    padding: 2px 0px !important;
+  }
+
+  &__menu {
+    margin-top: 0 !important;
+    border: none !important;
+
+    &-list {
+      border-radius: 0px 0px 4px 4px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+      padding: 5px 10px 10px;
+      color: #000;
+    }
+  }
+
+  &__option {
+    margin: 5px 0;
+    font-size: 12px !important;
+    border-radius: 4px;
+
+    &--is-selected {
+      background-color: rgba(0,0,0,.1) !important;
+      color: #000 !important;
+    }
+
+    &:hover {
+      background-color: rgba(0,0,0,.1);
+    }
+  }
+}
+
+
+

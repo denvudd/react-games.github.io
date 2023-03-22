@@ -4,8 +4,8 @@ import { useObserver } from '../../hooks/useObserver';
 
 import PublishersService from '../../API/services/publishers/PublishersService';
 
-import PublishersList from '../../components/PublishersList/PublishersList';
-import Loader from '../../components/UI/Loader/Loader';
+import CardList from '../../components/UI/CardList/CardList';
+import LoaderContent from '../../components/UI/LoaderContent/LoaderContent';
 
 import { getTotalPageCount } from '../../utils/getTotalPageCount';
 import './publishersPage.scss';
@@ -33,8 +33,7 @@ const PublishersPage = () => {
   useEffect(() => {
     getPublishers();
   }, [page, limit]);
-  
-  console.log([...publishersList])
+
 
   return (
     <div className="page publishers-page">
@@ -42,11 +41,21 @@ const PublishersPage = () => {
         <div className="section-header">
           <h2 className="section-title">Publishers</h2>
         </div>
-        <div className="developers-page__wrapper">
-          <PublishersList publishersList={publishersList}/>
+        <div className="publishers-page__wrapper">
+        <div className="page__about">
+          <div className="page__about-text">
+            <p>Here players can find information about the company responsible for publishing the game, including 
+              their history, past projects, and any notable achievements. This information can be useful for players who are interested in 
+              learning more about the companies involved in the gaming industry.</p>
+            <p>This category category can also be helpful for players who are looking for new games to play. By browsing through the different 
+              publishers listed, players can discover new games that share similar styles or themes to their favorite titles. This can help 
+              players expand their gaming horizons and find new games that they may not have otherwise discovered.</p>
+          </div>
+          </div>
+          <CardList list={publishersList} link="publishers" buttonText="More" param="slug"/>
         </div>
         <div ref={lastElement} className="observer"></div>
-        {isLoading && <Loader/>}
+        {(page < totalPages || isLoading) ? <LoaderContent/> : null}
       </div>
     </div>
   );

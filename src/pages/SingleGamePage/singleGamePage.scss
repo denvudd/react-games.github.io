@@ -3,11 +3,10 @@
     max-width: 900px;
   }
 
-  &__main {}
-
   &__head {
     display: flex;
     align-items: center;
+    width: 1200px;
 
     &-date,
     &-platforms,
@@ -30,6 +29,7 @@
         padding: 5px;
         border: 1px solid #fff;
         font-size: 13px;
+        background-image: none;
       }
     }
   }

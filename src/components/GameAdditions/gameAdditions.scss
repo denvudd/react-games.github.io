@@ -10,4 +10,21 @@
   width: 100%;
   margin-bottom: 10px;
   margin-right: 10px;
+
+  &.no-game {
+    background-color: #202020;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__no-game {
+    button {
+      padding: 15px 56px;
+      background-color: hsla(0, 0%, 100%, 0.1);
+      color: hsla(0, 0%, 100%, 0.4);
+      border-radius: 4px;
+      transition: 0.2s ease;
+    }
+  }
 }

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import playstation from '../../../resources/img/icons/playstation.svg';
 import xbox from '../../../resources/img/icons/xbox.svg';
 import pc from '../../../resources/img/icons/windows.svg';
@@ -27,15 +29,18 @@ const Platforms = ({platforms}) => {
 
   return (
     <ul className="platforms">
-      {platforms.map((platform, index) => {
-        const iconPath = platformIcons[platform.platform.name];
-        if (iconPath && !usedIcons[iconPath]) { // if icon has not been displayed yet
-          usedIcons[iconPath] = true;
-          return <li key={index} className="platform"><img src={platformIcons[platform.platform.name]} alt="platform-icon" /></li>;
-        } else {
-          return null;
-        }
-      })}
+      {platforms !== null
+          ? platforms.map((platform, index) => {
+            const iconPath = platformIcons[platform.platform.name];
+            if (iconPath && !usedIcons[iconPath]) { // if icon has not been displayed yet
+              usedIcons[iconPath] = true;
+              return <li key={index} className="platform"><Link to={`/platforms/${platform.platform.id}`}><img src={platformIcons[platform.platform.name]} alt="platform-icon" /></Link></li>;
+            } else {
+              return null;
+            }
+          })
+          : null
+      }
     </ul>
   );
 };

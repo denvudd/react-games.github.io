@@ -1,20 +1,27 @@
 
-import classes from './MySelect.module.scss';
+import Select from 'react-select';
+import './mySelect.scss';
 
 const MySelect = ({options, defaultValue, value, onChange}) => {
+  const selectOptions = options.map((option) => ({
+    value: option.value,
+    label: option.name,
+  }));
+
+  const selectValue = selectOptions.find((option) => option.value === value);
   return (
-    <select className={classes.select} value={value}
-            onChange={event => onChange(event.target.value)}
-    >
-      <option disabled value="">{defaultValue}</option>
-        {options.map(option => {
-          return (
-            <option key={option.value} value={option.value}>
-              {option.name}
-            </option>
-          )
-        })}
-    </select>
+    <div className="my-select__wrapper">
+      <Select
+        className="my-select"
+        classNamePrefix="my-select"
+        defaultValue={{ value: '', label: defaultValue }}
+        options={selectOptions}
+        value={selectValue}
+        isSearchable={false}
+        onChange={(selectedOption) => onChange(selectedOption.value)}
+        
+      />
+    </div> 
   );
 };
 

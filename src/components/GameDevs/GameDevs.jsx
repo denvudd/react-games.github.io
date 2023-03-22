@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useFetching } from "../../hooks/useFetching";
+import { Link } from "react-router-dom";
 
 import DevelopersService from "../../API/services/developers/DevelopersService";
 
-import Loader from "../../components/UI/Loader/Loader";
+import Loader from "../UI/Loader/Loader";
 import { Navigation, Pagination, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -23,8 +24,6 @@ const GameDevs = ({id}) => {
   useEffect(() => {
     getDevs();
   }, [id]);
-
-
 
   const swiperParams = {
     modules: [Navigation, Pagination],
@@ -71,7 +70,7 @@ const GameDevs = ({id}) => {
                 <ul className="card-item__content-items">
                   {dev.games.map(game => {
                     return <li key={game.id} className="card-item__content-game">
-                      <a href="#" className="card-item__content-name">{game.name}</a>
+                      <Link to={`/games/${game.slug}`} className="card-item__content-name">{game.name}</Link>
                       <span className="card-item__content-added">{game.added}</span>
                     </li>
                   })}
