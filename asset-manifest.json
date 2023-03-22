@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/react-games.github.io/static/css/main.dc7d73d7.css",
+    "main.js": "/react-games.github.io/static/js/main.16f3c8fd.js",
+    "static/media/main-hero.jpeg": "/react-games.github.io/static/media/main-hero.133aaf53617b5959adbb.jpeg",
+    "static/media/hero-photo.jpg": "/react-games.github.io/static/media/hero-photo.5ade524b4309e05ae7fd.jpg",
+    "static/media/epicgamesStore.svg": "/react-games.github.io/static/media/epicgamesStore.c1ee1895a44786d1d2415ac91593adc1.svg",
+    "static/media/itchIoStore.svg": "/react-games.github.io/static/media/itchIoStore.dfbce58f4f1d5461465f0cfa2d2921c1.svg",
+    "static/media/gogStore.svg": "/react-games.github.io/static/media/gogStore.9067292da7a1d81d759307a6b3645d0a.svg",
+    "static/media/appleStore.svg": "/react-games.github.io/static/media/appleStore.b69b9b60bd15f85106e0437aaffc0dc7.svg",
+    "static/media/android.svg": "/react-games.github.io/static/media/android.ef4997b7782caa544f442954df607657.svg",
+    "static/media/xboxStore.svg": "/react-games.github.io/static/media/xboxStore.cf883a72b8f5f821fc37de8052ae8f0e.svg",
+    "static/media/steamStore.svg": "/react-games.github.io/static/media/steamStore.3c8772cba59a2474d8b2b75bd6d15c1e.svg",
+    "static/media/xbox.svg": "/react-games.github.io/static/media/xbox.73ae45c0cec2e50a903d3ab1f821f069.svg",
+    "static/media/psStore.svg": "/react-games.github.io/static/media/psStore.ee3230058629052169a37b6e07ae02ee.svg",
+    "static/media/column-icon.svg": "/react-games.github.io/static/media/column-icon.861759b622b62040559d.svg",
+    "index.html": "/react-games.github.io/index.html",
+    "static/media/ios.svg": "/react-games.github.io/static/media/ios.1be1267a0da8e718fb07e270e018e43f.svg",
+    "static/media/list-icon.svg": "/react-games.github.io/static/media/list-icon.125c97e70366470e91d3.svg",
+    "static/media/googlePlayStore.svg": "/react-games.github.io/static/media/googlePlayStore.63328e0af3b93c01c76943aa28c68198.svg",
+    "static/media/playstation.svg": "/react-games.github.io/static/media/playstation.ecb9f256bdbf6e0d2914b23c25096282.svg",
+    "static/media/search.svg": "/react-games.github.io/static/media/search.c800c77628d90b1efa10.svg",
+    "static/media/search-black.svg": "/react-games.github.io/static/media/search-black.9f81706b2945e3f4b04b.svg",
+    "static/media/added-dev.svg": "/react-games.github.io/static/media/added-dev.3861ae1dbaaa92774c25.svg",
+    "static/media/modal-close.svg": "/react-games.github.io/static/media/modal-close.f556d441d89f2bfca4f99daaf847d978.svg",
+    "static/media/close-button.svg": "/react-games.github.io/static/media/close-button.587771c20e9ec1093ee6.svg",
+    "static/media/nintendoStore.svg": "/react-games.github.io/static/media/nintendoStore.76701a975fc1e33c6c6c075724584241.svg",
+    "static/media/nintendo.svg": "/react-games.github.io/static/media/nintendo.04fcc2fb82e356e8eabdf981c94862d3.svg",
+    "static/media/windows.svg": "/react-games.github.io/static/media/windows.1eb2ae366b46e9c7cd72873a6650ecca.svg",
+    "static/media/add_white_24dp.svg": "/react-games.github.io/static/media/add_white_24dp.197a2501aa3068d097db4c47c4d5803e.svg",
+    "main.dc7d73d7.css.map": "/react-games.github.io/static/css/main.dc7d73d7.css.map",
+    "main.16f3c8fd.js.map": "/react-games.github.io/static/js/main.16f3c8fd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dc7d73d7.css",
+    "static/js/main.16f3c8fd.js"
+  ]
+}
