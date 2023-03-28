@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react-games.github.io/static/css/main.dc7d73d7.css",
-    "main.js": "/react-games.github.io/static/js/main.16f3c8fd.js",
+    "main.css": "/react-games.github.io/static/css/main.35b704d0.css",
+    "main.js": "/react-games.github.io/static/js/main.fb972fea.js",
     "static/media/main-hero.jpeg": "/react-games.github.io/static/media/main-hero.133aaf53617b5959adbb.jpeg",
     "static/media/hero-photo.jpg": "/react-games.github.io/static/media/hero-photo.5ade524b4309e05ae7fd.jpg",
     "static/media/epicgamesStore.svg": "/react-games.github.io/static/media/epicgamesStore.c1ee1895a44786d1d2415ac91593adc1.svg",
@@ -18,6 +18,7 @@
     "static/media/ios.svg": "/react-games.github.io/static/media/ios.1be1267a0da8e718fb07e270e018e43f.svg",
     "static/media/list-icon.svg": "/react-games.github.io/static/media/list-icon.125c97e70366470e91d3.svg",
     "static/media/googlePlayStore.svg": "/react-games.github.io/static/media/googlePlayStore.63328e0af3b93c01c76943aa28c68198.svg",
+    "static/media/errorIcon.svg": "/react-games.github.io/static/media/errorIcon.f0af6c6f720c03461084.svg",
     "static/media/playstation.svg": "/react-games.github.io/static/media/playstation.ecb9f256bdbf6e0d2914b23c25096282.svg",
     "static/media/search.svg": "/react-games.github.io/static/media/search.c800c77628d90b1efa10.svg",
     "static/media/search-black.svg": "/react-games.github.io/static/media/search-black.9f81706b2945e3f4b04b.svg",
@@ -28,11 +29,11 @@
     "static/media/nintendo.svg": "/react-games.github.io/static/media/nintendo.04fcc2fb82e356e8eabdf981c94862d3.svg",
     "static/media/windows.svg": "/react-games.github.io/static/media/windows.1eb2ae366b46e9c7cd72873a6650ecca.svg",
     "static/media/add_white_24dp.svg": "/react-games.github.io/static/media/add_white_24dp.197a2501aa3068d097db4c47c4d5803e.svg",
-    "main.dc7d73d7.css.map": "/react-games.github.io/static/css/main.dc7d73d7.css.map",
-    "main.16f3c8fd.js.map": "/react-games.github.io/static/js/main.16f3c8fd.js.map"
+    "main.35b704d0.css.map": "/react-games.github.io/static/css/main.35b704d0.css.map",
+    "main.fb972fea.js.map": "/react-games.github.io/static/js/main.fb972fea.js.map"
   },
   "entrypoints": [
-    "static/css/main.dc7d73d7.css",
-    "static/js/main.16f3c8fd.js"
+    "static/css/main.35b704d0.css",
+    "static/js/main.fb972fea.js"
   ]
 }
