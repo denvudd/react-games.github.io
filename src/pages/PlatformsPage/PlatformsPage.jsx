@@ -6,9 +6,9 @@ import PlatformsService from '../../API/services/platforms/PlatformsService';
 
 import CardList from '../../components/UI/CardList/CardList';
 import LoaderContent from '../../components/UI/LoaderContent/LoaderContent';
+import Error from '../../components/UI/Error/Error';
 
 import { getTotalPageCount } from '../../utils/getTotalPageCount';
-import './platformsPage.scss';
 
 const PlatformsPage = () => {
   const [platformsList, setPlatformsList] = useState([]);
@@ -53,6 +53,7 @@ const PlatformsPage = () => {
           </div>
           </div>
           <CardList list={platformsList} link="platforms" buttonText="More" param="id"/>
+          {error && <Error/>}
         </div>
         <div ref={lastElement} className="observer"></div>
         {(page < totalPages || isLoading) ? <LoaderContent/> : null}

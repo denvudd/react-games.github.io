@@ -33,3 +33,26 @@
     margin-left: 10px;
   }
 }
+
+@media screen and (max-width: 992px) {
+  .stores-slider {
+    .swiper-slide {
+      width: 184px !important;
+    }
+  }
+  .stores-button {
+    margin-right: 0;
+    width: 184px;
+    height: 40px;
+    font-size: 14px;
+    flex-basis: auto;
+  }
+}
+
+.swiper-scrollbar {
+  height: 3px !important;
+
+  &-drag {
+    background: hsla(0,0%,100%,.2);
+  }
+}

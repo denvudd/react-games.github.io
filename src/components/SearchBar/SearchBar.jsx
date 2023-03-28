@@ -9,8 +9,13 @@ const SearchBar = () => {
   const { searchFormData, setSearchFormData } = useContext(SearchContext);
   const [showClose, setShowClose] = useState(false);
   const inputRef = useRef(null);
+  const [width, setWidth] = useState(window.innerWidth);
 
   const navigate = useNavigate();
+
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
 
   useEffect(() => {
     function handleKeyPress(event) {
@@ -21,8 +26,10 @@ const SearchBar = () => {
     }
 
     window.addEventListener('keydown', handleKeyPress);
+    window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -61,7 +68,7 @@ const SearchBar = () => {
           value={searchFormData.query}
           type="text"
           role="searchbox"
-          placeholder="Search more than 500 000 games"
+          placeholder={width < 576 ? `Search` : `Search more than 500 000 games`}
           className="search-input"
           onChange={handleInputChange}
         />

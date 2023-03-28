@@ -182,7 +182,7 @@ const GamePage = () => {
                   <div className="game-page__meta-title">Tags</div>
                   <div className="game-page__meta-info">
                     {game.tags.map(tag => {
-                      return <div key={tag.id} className="game-page__meta-tag"><a href="">{tag.name}</a></div> 
+                      return <div key={tag.id} className="game-page__meta-tag"><Link to={`/tags/${tag.slug}`}>{tag.name}</Link></div> 
                     })}
                   </div>
                 </div>

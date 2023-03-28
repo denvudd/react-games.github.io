@@ -40,3 +40,41 @@
     color: hsla(0,0%,100%,.4);
   }
 }
+
+@media screen and (max-width: 576px) {
+  .game-achievements {
+    &__inner {
+      flex-direction: column;
+    }
+  }
+
+  .game-achieve {
+    width: 100%;
+    padding: 16px 0;
+    border-bottom: 1px solid hsla(0,0%,100%,.1);
+
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    &__photo {
+      width: 48px;
+      height: 48px;
+    }
+
+    &__text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__name {
+      order: 1;
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    &__descr {
+      order: 2;
+    }
+  }
+}

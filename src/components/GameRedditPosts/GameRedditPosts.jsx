@@ -4,6 +4,7 @@ import { useFetching } from "../../hooks/useFetching";
 import GamesService from "../../API/services/games/GamesService";
 
 import Loader from "../UI/Loader/Loader";
+import Error from "../UI/Error/Error";
 
 import { formatDate } from '../../utils/formatDate';
 
@@ -47,6 +48,7 @@ const GameRedditPosts = ({id}) => {
             ? <Loader/>
             : postsContent
       }
+      {error && <Error/>}
     </div>
   );
 };

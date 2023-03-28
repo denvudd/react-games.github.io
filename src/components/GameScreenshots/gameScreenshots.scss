@@ -78,6 +78,30 @@
   max-height: calc(98vh - 80px);
 }
 
+@media screen and (max-width: 1440px) {
+  .game-screenshot {
+    &__inner {
+      width: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .screenshots-slider {
+    .swiper-slide {
+      width: 300px !important;
+    }
+  }
+  .game-screenshot {
+    &__inner {
+      width: auto;
+    }
+  }
+  .swiper-button-next, .swiper-button-prev {
+    display: none;
+  }
+}
+
 
 
 

@@ -6,9 +6,9 @@ import GenresService from '../../API/services/genres/GenresService';
 
 import CardList from '../../components/UI/CardList/CardList';
 import LoaderContent from '../../components/UI/LoaderContent/LoaderContent';
+import Error from '../../components/UI/Error/Error';
 
 import { getTotalPageCount } from '../../utils/getTotalPageCount';
-import './genresPage.scss';
 
 const GenresPage = () => {
   const [genresList, setGenresList] = useState([]);
@@ -53,6 +53,7 @@ const GenresPage = () => {
             </div>
           </div>
         <CardList list={genresList} link="genres" buttonText="More" param="slug"/>
+        {error && <Error/>}
       </div>
       <div ref={lastElement} className="observer"></div>
       {(page < totalPages || isLoading) ? <LoaderContent/> : null}

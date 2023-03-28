@@ -81,5 +81,16 @@
       margin: 6px;
     }
   }
+}
 
+@media screen and (max-width: 1200px) {
+  .search {
+    &-input {
+      font-size: 12px;
+    }
+
+    &-hotkeys__wrapper {
+      display: none;
+    }
+  }
 }

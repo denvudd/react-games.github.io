@@ -1,8 +1,4 @@
 .reqs {
-  &-block {
-    // margin-bottom: 10px;
-  }
-
   &-name {
     font-weight: 500;
     font-size: 18px;
@@ -24,5 +20,20 @@
 
   &-undefined {
     font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .reqs {
+    &-name {
+      font-size: 16px;
+    }
+    &-li {
+      font-size: 14px;
+    }
+
+    &-undefined {
+      font-size: 14px;
+    }
   }
 }

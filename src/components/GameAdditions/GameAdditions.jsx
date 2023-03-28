@@ -5,6 +5,7 @@ import { useFetching } from "../../hooks/useFetching";
 import GamesService from "../../API/services/games/GamesService";
 
 import Loader from "../UI/Loader/Loader";
+import Error from "../UI/Error/Error";
 import GameItem from "../GameItem/GameItem";
 
 import './gameAdditions.scss';
@@ -56,6 +57,7 @@ const GameAdditions = ({id}) => {
         </>
       )}
       {showAllAdditions && allAdditions}
+      {error && <Error/>}
     </div>
   );
 };

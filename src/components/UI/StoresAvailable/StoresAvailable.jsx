@@ -4,6 +4,9 @@ import { useFetching } from "../../../hooks/useFetching";
 import GamesService from "../../../API/services/games/GamesService";
 
 import Loader from "../Loader/Loader";
+import Error from "../Error/Error";
+import { Scrollbar, FreeMode } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import psStore from '../../../resources/img/icons/psStore.svg';
 import steamStore from '../../../resources/img/icons/steamStore.svg';
@@ -15,6 +18,10 @@ import appleStore from '../../../resources/img/icons/appleStore.svg';
 import gogStore from '../../../resources/img/icons/gogStore.svg';
 import itchIoStore from '../../../resources/img/icons/itchIoStore.svg';
 
+import 'swiper/scss';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 import './storesAvailable.scss';
 
 const StoresAvailable = ({stores, id}) => {
@@ -23,9 +30,21 @@ const StoresAvailable = ({stores, id}) => {
     const response = await GamesService.getStoreGameById(id);
     setUrls(response.data.results);
   });
+  const [isMobile, setIsMobile] = useState(false);
+
+  const checkIsMobile = () => {
+    setIsMobile(window.innerWidth < 992);
+  };
 
   useEffect(() => {
     getUrls();
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkIsMobile);
+    };
   }, [id, stores]);
 
   const usedIcons = {};
@@ -42,27 +61,59 @@ const StoresAvailable = ({stores, id}) => {
     'itch.io' : itchIoStore,
   };
   
+  const mobileSlides = stores.map(store => {
+    const url = urls.find(url => url.store_id === store.store.id);
+    if (url !== undefined) {
+      return (
+        <SwiperSlide key={store.store.id}>
+          <a className="stores-button"
+              href={url.url} 
+              target="_blank" rel="noreferrer"
+              key={store.store.id}>
+              <div>{store.store.name}</div>
+              <img src={storeIcons[store.store.name]} alt="store-icon" />
+            </a>
+        </SwiperSlide>
+      ) 
+    }
+  });
+
+  const desktopStores = stores.map(store => {
+    const url = urls.find(url => url.store_id === store.store.id);
+    if (url !== undefined) {
+      return (
+          <a className="stores-button"
+              href={url.url} 
+              target="_blank" rel="noreferrer"
+              key={store.store.id}>
+              <div>{store.store.name}</div>
+              <img src={storeIcons[store.store.name]} alt="store-icon" />
+            </a>
+      ) 
+    }
+  });
+
   return (
     <div className="stores-inner">
       {isLoading 
-          ? <Loader/>
-          : stores.map(store => {
-            const url = urls.find(url => url.store_id === store.store.id);
-            
-            if (url !== undefined) {
-              return (
-                <a className="stores-button"
-                    href={url.url} 
-                    target="_blank" rel="noreferrer"
-                    key={store.store.id}>
-                    <div>{store.store.name}</div>
-                    <img src={storeIcons[store.store.name]} alt="store-icon" />
-                  </a>
-              ) 
+      ? <Loader/>
+      : isMobile ? (
+          <Swiper
+            modules={[Scrollbar, FreeMode]}
+            spaceBetween={5}
+            slidesPerView={"auto"}
+            scrollbar={{ draggable: false }}
+            freeMode={{enabled: true}}
+            wrapperClass={'stores-slider'}
+          >
+            {error 
+              ? <Error/>
+              : mobileSlides
             }
-            
-          })
-      }
+          </Swiper>
+      )
+      : desktopStores}
+      {error && <Error/>}
     </div>
   );
 };

@@ -8,6 +8,7 @@ import GamesService from '../../API/services/games/GamesService';
 import GamesList from '../../components/GamesList/GamesList';
 import MySelect from '../../components/UI/MySelect/MySelect';
 import LoaderContent from '../../components/UI/LoaderContent/LoaderContent';
+import Error from '../../components/UI/Error/Error';
 
 import { getTotalPageCount } from '../../utils/getTotalPageCount';
 
@@ -148,6 +149,7 @@ const MetacriticGamesPage = () => {
                      limit={limit}
                      displayMode={displayMode}
           />
+          {error && <Error/>}
           <div ref={lastElement} className="observer"></div>
           {(page < totalPages || isLoading) ? <LoaderContent/> : null}
       </div>

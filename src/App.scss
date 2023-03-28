@@ -98,6 +98,7 @@ legend {
   width: 100%;
   margin: 0 auto;
   padding: 0 5px;
+  overflow-x: hidden;
 }
 
 .section-header {
@@ -171,7 +172,6 @@ legend {
   height: 10px;
 }
 
-
 .page__control {
   display: flex;
   align-items: stretch;
@@ -236,6 +236,40 @@ legend {
       background-repeat: no-repeat;
       background-size: contain;
     }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .container {
+    padding: 0 40px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .page {
+    padding-top: 0px;
+    &__control-display {
+      display: none;
+    }
+  }
+
+  .section-title {
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .page__control-filters {
+    flex-direction: column;
+    flex: auto;
+  }
+
+  .container {
+    padding: 0px 15px;
+  }
+
+  .page-art .art {
+    height: 300px;
   }
 }
 

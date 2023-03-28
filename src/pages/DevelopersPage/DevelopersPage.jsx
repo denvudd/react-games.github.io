@@ -6,9 +6,9 @@ import DevelopersService from '../../API/services/developers/DevelopersService';
 
 import CardList from '../../components/UI/CardList/CardList';
 import LoaderContent from '../../components/UI/LoaderContent/LoaderContent';
+import Error from '../../components/UI/Error/Error';
 
 import { getTotalPageCount } from '../../utils/getTotalPageCount';
-import './developersPage.scss';
 
 const DevelopersPage = () => {
   const [developersList, setDevelopersList] = useState([]);
@@ -53,6 +53,7 @@ const DevelopersPage = () => {
             </div>
           </div>
           <CardList list={developersList} link="developers" buttonText="More" param="slug"/>
+          {error && <Error/>}
         </div>
         <div ref={lastElement} className="observer"></div>
         {(page < totalPages || isLoading) ? <LoaderContent/> : null}

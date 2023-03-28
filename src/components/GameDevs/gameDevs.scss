@@ -21,10 +21,6 @@
   }
 }
 
-.swiper-slide {
-  min-width: 300px !important;
-}
-
 .game-developer {
   max-width: 300px;
   width: 100%;
@@ -110,9 +106,56 @@
 }
 
 .devs-slider {
-
   .swiper-slide {
     display: flex;
     justify-content: center;
+    min-width: 300px !important;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .game-devs {
+    &__inner {
+      width: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .game-screenshot {
+    &__inner {
+      width: auto;
+    }
+  }
+  .devs-slider {
+    .swiper-slide {
+      width: 264px !important;
+      min-width: 0px !important;
+    }
+  }
+  .swiper-button-next, .swiper-button-prev {
+    display: none;
+  }
+
+  .game-developer {
+    width: 264px;
+    height: 354px;
+
+    &__head {
+      &-photo {
+        img {
+          width: 96px;
+          height: 96px;
+        }
+      }
+
+      &-name {
+        font-size: 18px;
+      }
+
+      &-position {
+        font-size: 12px;
+      }
+    }
   }
 }

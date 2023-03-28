@@ -8,6 +8,7 @@ import GamesService from '../../API/services/games/GamesService';
 import GamesList from '../../components/GamesList/GamesList';
 import MySelect from '../../components/UI/MySelect/MySelect';
 import LoaderContent from '../../components/UI/LoaderContent/LoaderContent';
+import Error from '../../components/UI/Error/Error';
 
 import { getTotalPageCount } from '../../utils/getTotalPageCount';
 
@@ -18,6 +19,10 @@ const PopularGamesPage = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [limit, setLimit] = useState(20);
   const [page, setPage] = useState(1);
+  const [filter, setFilter] = useState({sort: '', query: ''});
+  const sortedGames = useSortGames(filter.sort, gamesList);
+  const lastElement = useRef();
+
   const [getGamesList, isLoading, error] = useFetching(async () => {
     const response = await GamesService.getGamesList(limit, page);
     setGamesList([...gamesList, ...response.data.results]);
@@ -25,6 +30,7 @@ const PopularGamesPage = () => {
     const totalCount = response.data.count;
     setTotalPages(getTotalPageCount(totalCount, limit))
   });
+
   const [getGamesListWithLimit, isLoadingLimit, errorLimit] = useFetching(async () => {
     const response = await GamesService.getGamesList(limit, page);
     setGamesList(response.data.results);
@@ -32,6 +38,7 @@ const PopularGamesPage = () => {
     const totalCount = response.data.count;
     setTotalPages(getTotalPageCount(totalCount, limit))
   });
+  
   const [getGamesByPlatform, isPlatformLoading, platformLimit] = useFetching(async () => {
     const response = await GamesService.getGamesList(limit, page, platformParam);
     setGamesList(response.data.results);
@@ -39,9 +46,6 @@ const PopularGamesPage = () => {
     const totalCount = response.data.count;
     setTotalPages(getTotalPageCount(totalCount, limit))
   });
-  const [filter, setFilter] = useState({sort: '', query: ''});
-  const sortedGames = useSortGames(filter.sort, gamesList);
-  const lastElement = useRef();
 
   useObserver(lastElement, page < totalPages, isLoading, () => {
     setTimeout(() => {
@@ -148,6 +152,7 @@ const PopularGamesPage = () => {
                        limit={limit}
                        displayMode={displayMode}
             />
+            {error && <Error/>}
             <div ref={lastElement} className="observer"></div>
             {(page < totalPages || isLoading) ? <LoaderContent/> : null}
         </div>

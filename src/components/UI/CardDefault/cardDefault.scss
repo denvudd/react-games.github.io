@@ -81,3 +81,23 @@
     }
   }
 }
+
+@media screen and (max-width: 1200px) {
+  .card-item {
+    max-width: none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .card-item {
+    &__content {
+      &-title {
+        font-size: 14px;
+      }
+
+      &-name {
+        max-width: 65%;
+      }
+    }
+  }
+}

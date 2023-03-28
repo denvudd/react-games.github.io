@@ -34,3 +34,14 @@
     margin-top: 20px;
   }
 }
+
+
+@media screen and (max-width: 992px) {
+  .publisher-page {
+    padding-top: 50px !important;
+
+    &__name {
+      font-size: 36px;
+    }
+  }
+}

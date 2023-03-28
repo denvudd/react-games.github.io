@@ -109,6 +109,42 @@
     border-bottom: none;
     position: relative;
   }
+}
 
+@media screen and (max-width: 1200px) {
+  .header {
+    &__li {
+      margin-right: 12px;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .header {
+    &__logo {
+      font-size: 18px;
+    }
+    &__wrapper {
+      padding: 24px 10px;
+      flex-grow: 0;
+    }
+
+    &__item {
+      margin: 0px 10px;
+
+      &__search {
+        min-width: 0px;
+      }
+    }
+  }
+
+  .search {
+    &-input {
+      height: 28px;
+      border-radius: 16px;
+      font-size: 14px;
+      
+    }
+  }
 }
 

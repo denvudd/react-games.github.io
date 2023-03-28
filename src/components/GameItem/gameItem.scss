@@ -9,6 +9,11 @@
     width: 100%;
     height: 180px;
     overflow: hidden;
+
+    span {
+      width: 100% !important;
+      height: 100% !important;
+    }
     
     img {
       width: 100%;
@@ -143,6 +148,20 @@
 
     .label-metacritic {
       font-size: 14px;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .game-item {
+    &__name {
+      font-size: 24px !important;
+    } 
+
+    &__content {
+      div, a {
+        margin-bottom: 19px;
+      }
     }
   }
 }

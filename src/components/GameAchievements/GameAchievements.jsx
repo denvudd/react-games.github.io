@@ -4,6 +4,7 @@ import { useFetching } from "../../hooks/useFetching";
 import GamesService from "../../API/services/games/GamesService";
 
 import Loader from "../UI/Loader/Loader";
+import Error from "../UI/Error/Error";
 
 import './gameAchievements.scss';
 
@@ -37,6 +38,7 @@ const GameAchievements = ({id}) => {
             })
             : <div>There is no achievements for this game</div>
       }
+      {error && <Error/>}
     </div>
   );
 };

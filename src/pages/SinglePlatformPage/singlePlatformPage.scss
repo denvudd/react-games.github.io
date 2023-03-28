@@ -1,5 +1,4 @@
 .platform-page {
-
   &__name {
     font-size: 46px;
     font-weight: 700;
@@ -33,5 +32,15 @@
 
   &__games {
     margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .platform-page {
+    padding-top: 50px !important;
+
+    &__name {
+      font-size: 36px;
+    }
   }
 }

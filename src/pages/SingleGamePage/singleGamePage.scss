@@ -184,7 +184,10 @@
 
       &:hover {
         background-color: #fff;
-        color: #000;
+        
+        a {
+          color: #000;
+        }
       }
     }
   }
@@ -272,6 +275,105 @@
 
   &__additions {
     margin-top: 32px;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .game__wrapper {
+    max-width: 1000px;
+  }
+
+  .game-page {
+    &__head {
+      width: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .game-page {
+    padding-top: 40px !important;
+
+    &__main {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__name {
+      text-align: center;
+      font-size: 36px;
+      order: 0;
+    }
+
+    &__head {
+      flex-wrap: wrap;
+      justify-content: center;
+      flex-direction: column;
+      order: 1;
+
+      &-date,
+      &-platforms,
+      &-playtime,
+      &-genres {
+        margin: 10px 5px 0px 5px;
+      }
+
+      &-platforms {
+        order: 1;
+      }
+
+      &-playtime {
+        order: 2;
+      }
+    }
+
+    &__ratings {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .game-page {
+    padding-top: 30px !important;
+    
+    &__ratings {
+      order: 2;
+
+      &-default, &-users {
+        margin-bottom: 10px;
+      }
+    }
+
+    &__about-text {
+      font-size: 14px;
+    }
+
+    &__meta {
+      &-title {
+        color: hsla(0,0%,100%,.2);
+        font-weight: 500;
+      }
+
+      &-link {
+        font-size: 14px;
+        word-wrap: break-word;
+      }
+
+      &-tag {
+        font-size: 14px;
+      }
+
+      &-text {
+        font-size: 14px;
+      }
+    }
+
+    .page__title {
+      font-weight: 500;
+      font-size: 20px;
+    }
   }
 }
 

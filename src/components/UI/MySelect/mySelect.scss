@@ -74,5 +74,15 @@
   }
 }
 
+@media screen and (max-width: 576px) {
+  .my-select {
+    &__wrapper {
+      width: 100%;
+      display: block;
+      margin-bottom: 8px;
+    }
+  }
+}
+
 
 

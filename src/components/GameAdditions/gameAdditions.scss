@@ -28,3 +28,22 @@
     }
   }
 }
+
+@media screen and (max-width: 1440px) {
+  .game-additions {
+    &__inner {
+      width: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .game-additions {
+    &__inner {
+      width: auto;
+    }
+  }
+  .swiper-button-next, .swiper-button-prev {
+    display: none;
+  }
+}

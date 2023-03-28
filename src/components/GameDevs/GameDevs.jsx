@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import DevelopersService from "../../API/services/developers/DevelopersService";
 
 import Loader from "../UI/Loader/Loader";
+import Error from "../UI/Error/Error";
 import { Navigation, Pagination, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -25,9 +26,29 @@ const GameDevs = ({id}) => {
     getDevs();
   }, [id]);
 
+  const sliderBreakpoints = {
+    0: {
+      slidesPerView: 'auto',
+      freeMode: {enabled: true},
+    },
+    576: {
+      slidesPerView: 2,
+      spaceBetween: 10,
+    },
+    692: {
+      slidesPerView: 2,
+      spaceBetween: 10,
+      freeMode: {enabled: false},
+    },
+    992: {
+      slidesPerView: 3,
+      spaceBetween: 10,
+    },
+  };
+
   const swiperParams = {
-    modules: [Navigation, Pagination],
-    spaceBetween: 12,
+    modules: [Navigation, Pagination, Scrollbar],
+    spaceBetween: 10,
     slidesPerView: 3,
     navigation: true,
     wrapperClass: 'devs-slider',
@@ -36,6 +57,7 @@ const GameDevs = ({id}) => {
   const swiperContent = devs.length !== 0
     ? <Swiper
     {...swiperParams}
+    breakpoints={sliderBreakpoints}
       >
       {
         devs.slice(0, 5).map(dev => {
@@ -82,9 +104,9 @@ const GameDevs = ({id}) => {
       }
       <SwiperSlide>
         <div className="game-developer">
-          <a href="#" className="game-developer__button-more">
+          <Link to="/developers" className="game-developer__button-more">
             <button>More</button>
-          </a>
+          </Link>
         </div>
       </SwiperSlide>
     </Swiper>
@@ -96,6 +118,7 @@ const GameDevs = ({id}) => {
           ? <Loader/>
           : swiperContent
       }
+      {error && <Error/>}
     </div>
   );
 };

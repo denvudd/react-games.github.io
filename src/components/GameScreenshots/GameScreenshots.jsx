@@ -5,8 +5,9 @@ import GamesService from "../../API/services/games/GamesService";
 
 import Loader from "../UI/Loader/Loader";
 import Modal from "../UI/Modal/Modal";
+import Error from "../UI/Error/Error";
 
-import { Navigation, Pagination, Scrollbar } from 'swiper';
+import { Navigation, Pagination, Scrollbar, FreeMode } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ImageGallery from 'react-image-gallery';
 
@@ -31,6 +32,18 @@ const GameScreenshots = ({id}) => {
     getScreenshots();
   }, [id]);
 
+  const sliderBreakpoints = {
+    0: {
+      slidesPerView: 'auto',
+      freeMode: {enabled: true},
+    },
+    576: {
+      slidesPerView: 3,
+      spaceBetween: 10,
+      scrollbar: { draggable: true },
+    },
+  };
+
   const handleImageClick = (index) => {
     setShowGallery(true);
     setSelectedIndex(index);
@@ -52,7 +65,7 @@ const GameScreenshots = ({id}) => {
       {isLoading 
           ? <Loader/>
           : <Swiper
-              modules={[Navigation, Pagination, Scrollbar]}
+              modules={[Navigation, Pagination, Scrollbar, FreeMode]}
               spaceBetween={10}
               slidesPerView={3}
               loop={true}
@@ -60,12 +73,16 @@ const GameScreenshots = ({id}) => {
               pagination={{ clickable: true }}
               scrollbar={{ draggable: true }}
               wrapperClass={'screenshots-slider'}
+              breakpoints={sliderBreakpoints}
             >
-            {screenshots.map((screenshot, index) => {
-              return <SwiperSlide key={screenshot.id} onClick={() => handleImageClick(index)}>
-                <img src={screenshot.image} alt="game-screenshot" className="game-screenshot" />
-              </SwiperSlide>
-            })}
+            {error 
+                ? <Error/>
+                : screenshots.map((screenshot, index) => {
+                    return <SwiperSlide key={screenshot.id} onClick={() => handleImageClick(index)}>
+                      <img src={screenshot.image} alt="game-screenshot" className="game-screenshot" />
+                    </SwiperSlide>
+                  })
+            }
          </Swiper>
       }
       {showGallery && (
@@ -83,6 +100,7 @@ const GameScreenshots = ({id}) => {
             />
         </Modal>
       )}
+      {error && <Error/>}
     </div>
   );
 };

@@ -6,9 +6,9 @@ import PublishersService from '../../API/services/publishers/PublishersService';
 
 import CardList from '../../components/UI/CardList/CardList';
 import LoaderContent from '../../components/UI/LoaderContent/LoaderContent';
+import Error from '../../components/UI/Error/Error';
 
 import { getTotalPageCount } from '../../utils/getTotalPageCount';
-import './publishersPage.scss';
 
 const PublishersPage = () => {
   const [publishersList, setPublishersList] = useState([]);
@@ -53,6 +53,7 @@ const PublishersPage = () => {
           </div>
           </div>
           <CardList list={publishersList} link="publishers" buttonText="More" param="slug"/>
+          {error && <Error/>}
         </div>
         <div ref={lastElement} className="observer"></div>
         {(page < totalPages || isLoading) ? <LoaderContent/> : null}
