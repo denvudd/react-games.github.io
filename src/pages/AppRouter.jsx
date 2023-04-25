@@ -9,7 +9,7 @@ const AppRouter = () => {
 
   return (
     <div>
-      <Routes basename={process.env.PUBLIC_URL}>
+      <Routes>
         {routes.map(route => {
           return <Route path={route.path} 
                         element={route.element}
